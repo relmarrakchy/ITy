@@ -1,0 +1,328 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: system-ui;
+}
+
+body {
+    width: 100%;
+    display: flex;
+}
+
+.nav {
+    width: 23%;
+    border-right: 1px solid rgb(191, 172, 226);
+}
+
+.nav img {
+    margin: 15px;
+    width: 90%;
+}
+
+.main {
+    width: 50%;
+    border-right: 1px solid rgb(191, 172, 226);
+    overflow-y: scroll;
+}
+
+.main::-webkit-scrollbar {
+    display: none;
+}
+
+.post {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    border-bottom: 1px solid rgb(191, 172, 226);
+}
+
+.post:hover {
+    background-color: rgb(236, 242, 255);
+}
+
+.avatarDiv {
+    width: 11%;
+    height: 100%;
+}
+
+.avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 100%;
+    margin: 7px auto;
+}
+
+.avatar img {
+    width: inherit;
+    height: inherit;
+    border-radius: inherit;
+}
+
+.contentPost {
+    width: 90%;
+    height: 100%;
+    display: flex;
+}
+
+.postInfo {
+    margin: 8px;
+    width: 90%;
+    height: fit-content;
+}
+
+.username {
+    font-size: 17px;
+    font-weight: bold;
+    color: rgb(10, 10, 10);
+    margin: 5px;
+}
+
+.username span {
+    font-weight: lighter;
+    color: gray;
+}
+
+.postDescription {
+    margin: 0 5px;
+    color: rgb(43, 43, 43);
+}
+
+.postPic {   
+    width: 95%;
+    text-align: center;
+    height: 250px;
+    margin: 12px auto;
+    border-radius: 12px;
+    position: relative;
+}
+
+.postPic img {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: inherit;
+    height: 100%;
+}
+
+.prince {
+    position: relative;
+    top: 40%;
+}
+
+.display {
+    display: none;
+}
+
+.cmntTypeDiv {
+    width: 100%;
+    height: 85px;
+    display: flex;
+}
+
+.cmntTypeDiv .profil {
+    width: 10%;
+    height: 100%;
+}
+
+.profil .profileAvatar {
+    width: 40px;
+    height: 40px;
+    margin: 4px auto;
+    border-radius: 100%;
+    /* background-image: url("../imgs/mouad.jpeg"); */
+    background-size: cover;
+}
+.profileAvatar img{
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+
+}
+
+
+.typeCmnt {
+    width: 90%;
+}
+
+::placeholder {
+    color: rgb(52, 52, 52);
+}
+
+.typeCmnt textarea {
+    margin-left: 2.5%;
+    margin-top: 5px;
+    width: 91%;
+    font-size: 16px;
+    padding-left: 8px;
+    padding-top: 5px;
+    resize: none;
+    border: 1px solid rgb(101, 93, 187);
+    border-radius: 5px;
+    background-color: transparent;
+    transition: outline 30ms;
+}
+
+.typeCmnt textarea:focus {
+    outline: 2px solid rgb(101, 93, 187);
+}
+
+.typeCmnt button  {
+    position: relative;
+    margin-top: 0.3%;
+    left: 78%;
+    padding: 4px 8px;
+    background-color: rgb(127, 118, 218);
+    border: none;
+    font-size: 15px;
+    font-weight: bold;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: background-color 100ms;
+}
+
+.typeCmnt button:hover {
+    background-color: rgb(94, 87, 172);
+}
+
+.reactPost {
+    width: 10%;
+}
+
+.reactCardCmnt {
+    width: 100%;
+    height: fit-content;
+    text-align: center;
+}
+
+.reactIcon {
+    margin: 2px auto;
+    width: fit-content;
+    padding: 3px 7px;
+    font-size: 25px;
+    border-radius: 100px;
+    cursor: pointer;
+}
+
+.reactIcon button {
+    border: none;
+    background-color: transparent;
+    padding: 3px 3.5px;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+.reactIcon a:hover {
+    color: white;
+}
+
+.reactIcon a:visited {
+    color: black;
+}
+
+.reactCardCmnt .desc{
+    font-weight: lighter;
+    cursor: pointer;
+}
+
+
+
+.search {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    height: 8%;
+    border-bottom: 1px solid rgb(191, 172, 226);
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.746);
+    z-index: 1;
+}
+
+.search .searchIcon {
+    position: absolute;
+    transform: translate(70%, 60%);
+    transform: translateY(-50%, -50%);
+    font-size: 25px;
+    color: rgb(101, 93, 187);
+}
+
+.search input { 
+    margin-top: 8px;
+    font-size: 20px;
+    width: 70%;
+    padding: 5px 50px;
+    border-radius: 20px;
+    outline: none;
+    border: none;
+    background-color: rgb(236, 242, 255);
+    transition: border 20ms;
+}
+
+.search input:focus {
+    border: 1px solid rgb(101, 93, 187);
+    background-color: transparent;
+    outline: none;
+}
+
+.auth {
+    width: 27%;
+}
+
+.authForm {
+    margin: 16px auto;
+    width: 73%;
+    height: fit-content;
+    border: 1.8px solid rgb(191, 172, 226);
+    border-radius: 7px;
+}
+
+.authForm .h {
+    margin: 10px 20px;
+    font-size: 21px;
+    font-weight: bold;
+}
+
+.h span {
+    color: #6F1AB6;
+}
+
+.authForm .des {
+    margin: 10px 20px;
+    font-size: 16px;
+}
+
+.authForm div {
+    text-align: center;
+}
+
+.signup {
+    margin: 7px auto;
+    width: 75%;
+    padding: 10px 20px;
+    background-color: transparent;
+    outline: none;
+    border: 1px solid rgb(101, 93, 187);
+    border-radius: 20px;
+    font-size: 16px;
+    font-weight: 500;
+    transition: backgound-color 300ms;
+    cursor: pointer;
+}
+
+.logLink {
+    margin: 4px;
+}
+
+.logLink a {
+    text-decoration: none;
+    color: rgb(101, 93, 187);
+    transition: text-decoration 1s;
+}
+
+.logLink a:hover {
+    text-decoration: underline;
+}
+
+.signup:hover {
+    background-color: rgb(101, 93, 187);
+    color: white;
+}
+
