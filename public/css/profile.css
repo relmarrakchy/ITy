@@ -9,14 +9,95 @@ body {
     display: flex;
 }
 
-.nav {
+.navv {
     width: 23%;
     border-right: 1px solid rgb(191, 172, 226);
 }
 
-.nav img {
+.navv img {
     margin: 15px;
     width: 90%;
+}
+
+.navBar {
+    width: 80%;
+    height: fit-content;
+    margin: 0px auto;
+}
+
+.link, .crePost {
+    margin: 2% 9%;
+    width: fit-content;
+    transition: background-color 50ms;
+    transition: font-weight 50ms;
+    border-radius: 100px;
+}
+
+.link button, .crePost button {
+    border: none;
+    padding: 10px 15px;
+    background-color: transparent;
+    border-radius: 100px;
+    color: rgb(49, 49, 49);
+    font-size: 19px;
+    cursor: pointer;
+}
+
+.link i {
+    margin: 0 0px;
+    transform: translate(-10%, 12%);
+    font-size: 25px;
+    color: rgb(101, 93, 187);
+}
+
+.active {
+    font-weight: bold;
+}
+
+.crePost, .logout {
+    margin: 5% auto;
+    width: 80%;
+}
+
+.crePost button {
+    width: 100%;
+    padding: 16px 15px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    background-color: rgb(101, 93, 187);
+    transition: background-color 50ms;
+    outline: none;
+}
+
+.crePost button:hover {
+    background-color: rgb(86, 80, 151);
+    outline: none;
+    border: none;
+    box-shadow: none;
+}
+
+.crePost button:active {
+    outline: none;
+    border: none;
+    box-shadow: none;
+    background-color: rgb(86, 80, 151);
+}
+
+.crePost button:focus {
+    outline: none;
+    border: none;
+    box-shadow: none;
+}
+
+.link {
+    transition: background 200ms;
+}
+
+.link:hover {
+    background-color: rgb(236, 242, 255);
 }
 
 .main {
@@ -27,6 +108,97 @@ body {
 
 .main::-webkit-scrollbar {
     display: none;
+}
+
+.back {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    height: 7%;
+    border-bottom: 1px solid rgb(191, 172, 226);
+    display: flex;
+    background-color: rgba(255, 255, 255, 0.763);
+    z-index: 1;
+}
+
+.SignDiv {
+    width: 7.5%;
+    height: 100%;
+    text-align: center;
+}
+
+.SignDiv i {
+    font-size: 40px;
+    margin-top: 2.5px;
+    cursor: pointer;
+    color: rgb(127, 118, 218);
+    border-radius: 100%;
+    transition: background-color 200ms;
+}
+
+.SignDiv i:hover {
+    background-color: rgb(236, 242, 255);
+}
+
+.SuppInfo {
+    margin-left: 10px;
+    margin-top: 2.5px;
+}
+
+.SuppInfo div {
+    position: relative;
+    top: 5px;
+}
+
+.SuppInfo div span {
+    font-size: 14px;
+    font-weight: lighter;
+}
+
+.suppUser {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.userDiv {
+    width: 100%;
+    height: fit-content;
+    border-bottom: 1px solid rgb(191, 172, 226);
+}
+
+.bg {
+    width: 100%;
+    height: 170px;
+    background-color: rgb(204, 212, 228);
+}
+
+.picImg {
+    width: 150px;
+    height: 150px;
+    border: 5px solid white;
+    border-radius: 100%;
+    margin: 0 auto;
+    margin-top: -10.5%;
+}
+
+.picImg img {
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+}
+
+.infos {
+    text-align: center;
+    margin: 5px auto;
+    width: 200px;
+    height: fit-content;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.emaill {
+    font-size: 15.5px;
+    font-weight: lighter;
 }
 
 .post {
@@ -223,7 +395,6 @@ body {
     cursor: pointer;
 }
 
-
 .search {
     position: sticky;
     top: 0;
@@ -323,4 +494,55 @@ body {
 .signup:hover {
     background-color: rgb(101, 93, 187);
     color: white;
+}
+
+.modal-dialog {
+    width: 700px;
+}
+
+.modal-content {
+    max-height: 600px;
+    overflow-y: scroll;
+}
+
+.modal-content::-webkit-scrollbar {
+    display: none;
+}
+
+.addArticle {
+    width: 100%;
+    height: 500px;
+    border: 1px solid red;
+    display: flex;
+}
+
+.fields {
+    width: 89%;
+    height: inherit;
+    border: 1px solid purple;
+}
+
+.fields div {
+    width: 96%;
+    position: relative;
+    left: 2%;
+    top: 2%;
+}
+
+.fSel {
+    width: 20%;
+    border-radius: 100px;
+    padding: 0 8px;
+    transition: background 200ms;
+    cursor: pointer;
+}
+
+.fSel:hover {
+    background-color: rgb(233, 221, 255);
+}
+
+.fSel:focus {
+    border: 2px solid rgb(101, 93, 187);
+    box-shadow: none;
+    background-color: transparent;
 }

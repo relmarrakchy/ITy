@@ -8,4 +8,6 @@ app.use(express.static('public')) //Permission de fichier public
 app.use(express.json()) //Transmettre les données au format JSON
 
 app.get('/', (req, res) => { res.render("index", {title: "Index"}) })
+app.get('/profile', (req, res) => { res.render("profile", {title: "Profile"}) })
+
 app.use(authRoutes)

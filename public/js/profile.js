@@ -5,6 +5,11 @@ document.addEventListener('DOMContentLoaded', () => {
     let cmntTextareas = document.querySelectorAll(".cmntTextarea")
     let subBtns = document.querySelectorAll(".submit")
     let posts = document.querySelectorAll(".post")
+    let backArrow = document.getElementById("backArrow")
+
+    backArrow.addEventListener('click', () => {
+        history.back();
+    })
 
     let height = window.innerHeight
     body.style.height = `${height}px`
