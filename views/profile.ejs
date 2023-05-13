@@ -75,19 +75,23 @@
                                     </div>
 
                                     <div class="mb-3">
-                                        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Title">
+                                        <input type="text" class="form-control inp" id="exampleFormControlInput1" placeholder="Title">
                                     </div>
 
                                     <div class="mb-3">
-                                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="What are you thinking about ?"></textarea>
+                                        <textarea class="form-control ta" id="ta" placeholder="What are you thinking about ?"></textarea>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <input class="form-control inp" type="file" id="formFile" accept="image/*">
                                     </div>
                                 </div>
                             </div>
+                            <button id="real" type="submit" class="btn btn-primary real">Save changes</button>
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
+                        <button id="fake" type="button" class="btn btn-primary share">Share it !</button>
                     </div>
                 </div>
             </div>

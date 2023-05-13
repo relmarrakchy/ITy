@@ -6,9 +6,23 @@ document.addEventListener('DOMContentLoaded', () => {
     let subBtns = document.querySelectorAll(".submit")
     let posts = document.querySelectorAll(".post")
     let backArrow = document.getElementById("backArrow")
+    const textarea = document.getElementById('ta')
+    let fakebtn = document.getElementById("fake")
+    let realbtn = document.getElementById("real")
+
+    fakebtn.addEventListener("click", () => {
+        realbtn.click()
+    })
 
     backArrow.addEventListener('click', () => {
         history.back();
+    })
+
+    textarea.addEventListener("input", () => {
+        textarea.style.height = 'auto'; // Reset the height to auto to recalculate the height
+  
+        // Set the new height based on the scroll height of the content
+        textarea.style.height = textarea.scrollHeight + 'px';
     })
 
     let height = window.innerHeight

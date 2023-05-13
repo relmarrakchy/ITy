@@ -90,6 +90,7 @@ body {
     outline: none;
     border: none;
     box-shadow: none;
+    background-color: rgb(86, 80, 151);
 }
 
 .link {
@@ -511,15 +512,13 @@ body {
 
 .addArticle {
     width: 100%;
-    height: 500px;
-    border: 1px solid red;
+    height: fit-content;
     display: flex;
 }
 
 .fields {
     width: 89%;
     height: inherit;
-    border: 1px solid purple;
 }
 
 .fields div {
@@ -545,4 +544,34 @@ body {
     border: 2px solid rgb(101, 93, 187);
     box-shadow: none;
     background-color: transparent;
+}
+
+.ta {
+    resize: none; /* Prevent manual resizing */
+    overflow: hidden; /* Hide vertical scrollbar */
+    min-height: 50px; /* Set a minimum height */
+}
+
+.inp:focus, .ta:focus {
+    border: 1px solid rgb(101, 93, 187);
+    box-shadow: none;
+}
+
+.real {
+    display: none;
+}
+
+.share {
+    background-color: rgb(101, 93, 187);
+    border: none;
+    transition: 200ms;
+}
+
+.share:hover {
+    background-color: rgb(83, 79, 135);
+}
+
+.share:focus {
+    background-color: rgb(83, 79, 135);
+    box-shadow: none;
 }
