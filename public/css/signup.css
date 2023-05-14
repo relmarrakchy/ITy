@@ -64,7 +64,7 @@ body {
     outline: 2px solid rgb(62, 84, 172);
 }
 
-.signupFormDiv form button {
+.signupFormDiv form input[type="submit"] {
     width: 86%;
     padding: 6px 12px;
     font-size: 15px;
@@ -78,7 +78,7 @@ body {
     transition: border 70ms;
 }
 
-.signupFormDiv form button:hover {
+.signupFormDiv form input[type="submit"]:hover {
     background: transparent;
     outline: 1.5px solid rgb(101, 93, 187);
 }
@@ -101,6 +101,7 @@ body {
 }
 
 .err {
+    display: none;
     color: red;
     font-weight: bold;
     border-radius: 9px;

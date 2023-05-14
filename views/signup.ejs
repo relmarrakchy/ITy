@@ -20,13 +20,13 @@
 
         <div class="signupFormDiv">
             <p>A new wizard! yaaay!</p>
-            <!-- <span class="err"> <i class='bx bxs-info-circle'></i> Error message</span> -->
-            <form action="" method="post">
-                <input type="text" name="" id="" placeholder="Type your name"> <br>
-                <input type="email" name="" id="" placeholder="Type your email"> <br>
-                <input type="password" name="" id="" placeholder="Type your password"> <br>
-                <input type="password" name="" id="" placeholder="Confirm your password"> <br>
-                <button>Sign up</button> <br>
+            <span id="err" class="err"> </span>
+            <form id="form" action="/signup" method="post">
+                <input type="text" name="name" id="name" placeholder="Type your name"> <br>
+                <input type="email" name="email" id="email" placeholder="Type your email"> <br>
+                <input type="password" name="password" id="password" placeholder="Type your password"> <br>
+                <input type="password" name="confPassword" id="confPassword" placeholder="Confirm your password"> <br>
+                <input type="submit" value="Sign up"> <br>
                 <div><a href="/login">Already have an account ?</a></div>
             </form>
         </div>
