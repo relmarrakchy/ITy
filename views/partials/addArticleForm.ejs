@@ -1,0 +1,56 @@
+<div class="modal fade bd-example-modal-lg" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="form" class="addArticle" action="/article" method="post" enctype="multipart/form-data">
+                    <div class="avatarDiv">
+                        <a href="">
+                            <div class="avatar">
+                                <img src="/imgs/profile.png" alt="">
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="fields">
+                        <div>
+                            <div class="mb-3" style="display: flex;">
+                                <select id="published" class="form-select fSel" aria-label="Default select example">
+                                    <option value="true" selected>Public</option>
+                                    <option value="false">Me only</option>
+                                </select>
+
+                                <select id="category" class="form-select fSel" style="margin-left: 7px; width: 200px;" aria-label="Default select example">
+                                    <option selected>Category</option>
+                                    <% for(var i = 0; i < categories.length; i++) { %>
+                                        <option value="<%= categories[i].id %>"><%= categories[i].nom %></option>
+                                    <% } %>
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+                                <input id="title" type="text" class="form-control inp" id="exampleFormControlInput1" placeholder="Title">
+                            </div>
+
+                            <div class="mb-3">
+                                <textarea id="content" class="form-control ta" id="ta" placeholder="What are you thinking about ?"></textarea>
+                            </div>
+
+                            <div class="mb-3">
+                                <input class="form-control inp" name="image" type="file" id="formFile" accept="image/*">
+                            </div>
+                        </div>
+                    </div>
+                    <button id="real" type="submit" class="btn btn-primary real">Save changes</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button id="fake" type="button" class="btn btn-primary share">Share it !</button>
+            </div>
+        </div>
+    </div>
+</div>

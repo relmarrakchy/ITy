@@ -3,6 +3,13 @@ let bcrypt = require('bcrypt')
 let jwt = require('jsonwebtoken')
 let prisma = new PrismaClient()
 
+let maxAge = 24 * 60 * 60
+let createToken = (id) => {
+    return jwt.sign({id}, "ity2023", {
+        expiresIn: maxAge
+    })
+}
+
 let login_get = (req, res) => { res.render("login", {title: "Login"}) }
 
 let login_post = async (req, res) => {
@@ -19,7 +26,9 @@ let login_post = async (req, res) => {
             let auth = await bcrypt.compare(password, logUser.password)
 
             if (auth) {
-                res.json(logUser)
+                let token = createToken(logUser.id)
+                res.cookie('jwt', token, {httpOnly: true, maxAge: maxAge * 1000})
+                res.json({user: logUser.id})
             } else {
                 res.json({code: "222"})
             }
@@ -32,13 +41,6 @@ let login_post = async (req, res) => {
 }
 
 let signup_get = (req, res) => { res.render("signup", {title: "Sign up"}) }
-
-let maxAge = 24 * 60 * 60
-let createToken = (id) => {
-    return jwt.sign({id}, "ity2023", {
-        expiresIn: maxAge
-    })
-}
 
 let signup_post = async (req, res) => {
     let {name, email, password} = req.body

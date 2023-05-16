@@ -6,12 +6,19 @@ document.addEventListener('DOMContentLoaded', () => {
     let subBtns = document.querySelectorAll(".submit")
     let posts = document.querySelectorAll(".post")
     let backArrow = document.getElementById("backArrow")
-    const textarea = document.getElementById('ta')
+    const textarea = document.getElementById('content')
     let fakebtn = document.getElementById("fake")
     let realbtn = document.getElementById("real")
 
     fakebtn.addEventListener("click", () => {
+        console.log(1)
         realbtn.click()
+    })
+
+    function notempty(val) { return (val != "") ? 1 : 0 }
+
+    realbtn.addEventListener("submit", () => {
+        console.log("Sub")
     })
 
     backArrow.addEventListener('click', () => {
@@ -75,4 +82,46 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         })
     }
+
+    document.getElementById('form').addEventListener('submit', function (event) {
+        event.preventDefault(); // Prevent form submission
+    
+        // Retrieve form field values
+        const publishedValue = document.getElementById('published').value;
+        const categoryValue = document.getElementById('category').value;
+        const titleValue = document.getElementById('title').value;
+        const contentValue = document.getElementById('content').value;
+
+        if (notempty(categoryValue) && notempty(titleValue) && notempty(contentValue)) {
+            const formData = {
+                published: publishedValue,
+                category: categoryValue,
+                title: titleValue,
+                content: contentValue
+            };
+  
+            // Send the form data to the server
+            fetch('/article', {
+                method: 'POST',
+                headers: {
+                'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            }).then(response => response.json())
+            .then(data => {
+                if(data.code) {
+                    if (data.code === "000") {
+                        err.style.display = "block"
+                        err.innerHTML = "<i class='bx bxs-info-circle'></i> Email is not correct !"
+                    } else if (data.code === "222") {
+                        err.style.display = "block"
+                        err.innerHTML = "<i class='bx bxs-info-circle'></i> The password is not correct !"
+                    }
+                }
+            }).catch(err =>{ console.log(err) })
+        } else {
+            err.style.display = "block"
+            err.innerHTML = "<i class='bx bxs-info-circle'></i> All the fields should be filled"
+        }
+    })
 })

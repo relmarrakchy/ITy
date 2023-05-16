@@ -9,14 +9,96 @@ body {
     display: flex;
 }
 
-.nav {
+.navv {
     width: 23%;
     border-right: 1px solid rgb(191, 172, 226);
 }
 
-.nav img {
+.navv img {
     margin: 15px;
     width: 90%;
+}
+
+.navBar {
+    width: 80%;
+    height: fit-content;
+    margin: 0px auto;
+}
+
+.link, .crePost {
+    margin: 2% 9%;
+    width: fit-content;
+    transition: background-color 50ms;
+    transition: font-weight 50ms;
+    border-radius: 100px;
+}
+
+.link button, .crePost button {
+    border: none;
+    padding: 10px 15px;
+    background-color: transparent;
+    border-radius: 100px;
+    color: rgb(49, 49, 49);
+    font-size: 19px;
+    cursor: pointer;
+}
+
+.link i {
+    margin: 0 0px;
+    transform: translate(-10%, 12%);
+    font-size: 25px;
+    color: rgb(101, 93, 187);
+}
+
+.active {
+    font-weight: bold;
+}
+
+.crePost, .logout {
+    margin: 5% auto;
+    width: 80%;
+}
+
+.crePost button {
+    width: 100%;
+    padding: 16px 15px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    background-color: rgb(101, 93, 187);
+    transition: background-color 50ms;
+    outline: none;
+}
+
+.crePost button:hover {
+    background-color: rgb(86, 80, 151);
+    outline: none;
+    border: none;
+    box-shadow: none;
+}
+
+.crePost button:active {
+    outline: none;
+    border: none;
+    box-shadow: none;
+    background-color: rgb(86, 80, 151);
+}
+
+.crePost button:focus {
+    outline: none;
+    border: none;
+    box-shadow: none;
+    background-color: rgb(86, 80, 151);
+}
+
+.link {
+    transition: background 200ms;
+}
+
+.link:hover {
+    background-color: rgb(236, 242, 255);
 }
 
 .main {
@@ -323,4 +405,83 @@ body {
 .signup:hover {
     background-color: rgb(101, 93, 187);
     color: white;
+}
+
+.modal-dialog {
+    width: 700px;
+}
+
+.modal-content {
+    max-height: 600px;
+    overflow-y: scroll;
+}
+
+.modal-content::-webkit-scrollbar {
+    display: none;
+}
+
+.addArticle {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+}
+
+.fields {
+    width: 89%;
+    height: inherit;
+}
+
+.fields div {
+    width: 96%;
+    position: relative;
+    left: 2%;
+    top: 2%;
+}
+
+.fSel {
+    width: 20%;
+    border-radius: 100px;
+    padding: 0 8px;
+    transition: background 200ms;
+    cursor: pointer;
+}
+
+.fSel:hover {
+    background-color: rgb(233, 221, 255);
+}
+
+.fSel:focus {
+    border: 2px solid rgb(101, 93, 187);
+    box-shadow: none;
+    background-color: transparent;
+}
+
+.ta {
+    resize: none; /* Prevent manual resizing */
+    overflow: hidden; /* Hide vertical scrollbar */
+    min-height: 50px; /* Set a minimum height */
+}
+
+.inp:focus, .ta:focus {
+    border: 1px solid rgb(101, 93, 187);
+    box-shadow: none;
+}
+
+.real {
+    display: none;
+}
+
+.share {
+    background-color: rgb(101, 93, 187);
+    border: none;
+    transition: 200ms;
+}
+
+.share:hover {
+    background-color: rgb(83, 79, 135);
+}
+
+.share:focus {
+    background-color: rgb(83, 79, 135);
+    box-shadow: none;
 }

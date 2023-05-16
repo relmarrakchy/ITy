@@ -41,6 +41,10 @@ document.addEventListener('DOMContentLoaded', () => {
                             err.innerHTML = "<i class='bx bxs-info-circle'></i> This email is already used"
                         }
                     }
+
+                    if (data.user) {
+                        location.assign('/')
+                    }
                 })
             } else {
                 err.style.display = "block"

@@ -42,6 +42,10 @@ document.addEventListener('DOMContentLoaded', () => {
                         err.innerHTML = "<i class='bx bxs-info-circle'></i> The password is not correct !"
                     }
                 }
+
+                if (data.user) {
+                    location.assign(`/`)
+                }
             })
         } else {
             err.style.display = "block"
