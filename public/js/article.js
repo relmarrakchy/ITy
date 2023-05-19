@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let typeDiv = document.querySelectorAll(".display")
     let cmntTextareas = document.querySelectorAll(".cmntTextarea")
     let subBtns = document.querySelectorAll(".submit")
-    let posts = document.querySelectorAll(".postClick")
+    let posts = document.querySelectorAll(".post")
     let backArrow = document.getElementById("backArrow")
     const textarea = document.getElementById('content')
     let fakebtn = document.getElementById("fake")
@@ -12,29 +12,32 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let delBtnFake = document.querySelectorAll(".delBtnFake")
     let delBtnReal = document.querySelectorAll(".delBtnReal")
+
     let modBtnFake = document.querySelectorAll(".modFakeBtn")
     let modBtnReal = document.querySelectorAll(".modRealBtn")
 
+    let btnFCmtDel = document.querySelectorAll(".delBtnFakeCmt")
+    let btnRCmtDel = document.querySelectorAll(".delBtnRealCmt")
+
+    let modBtnFakeCmt = document.querySelectorAll(".modFakeBtnCmt")
+    let modBtnRealCmt = document.querySelectorAll(".modRealBtnCmtt")
+
     let formsComment = document.querySelectorAll(".formComment")
+    let formsCommentDel = document.querySelectorAll(".formDeleteCmt")
     let formsDel = document.querySelectorAll(".formDelete")
     let formsMod = document.querySelectorAll(".modForm")
+    let formsCommentMod = document.querySelectorAll(".modFormCmt")
 
     let contents = document.querySelectorAll(".contents")
 
     let keys = document.querySelectorAll(".keys")
     let keysDel = document.querySelectorAll(".delKeys")
-
-    console.log(posts[0].attributes[1].value)
+    let keysDelCmt = document.querySelectorAll(".delKeysCmt")
+    let keysModCmt = document.querySelectorAll(".keyModCmt")
 
     if (document.getElementById("logout")) {
         document.getElementById("logout").addEventListener("click", () => {
             window.location.pathname = "/logout"
-        })
-    }
-
-    for (let i = 0; i < posts.length; i++) {
-        posts[i].addEventListener("click", () => {
-            window.location.pathname = `/article/${posts[i].attributes[1].value}`
         })
     }
 
@@ -44,14 +47,27 @@ document.addEventListener('DOMContentLoaded', () => {
         })
     }
 
+    console.log(modBtnRealCmt)
+
+    for (let i = 0; i < modBtnFakeCmt.length; i++) {
+        modBtnFakeCmt[i].addEventListener("click", () => {
+            modBtnRealCmt[i].click()
+        })
+    }
+
     fakebtn.addEventListener("click", () => {
-        console.log(1)
         realbtn.click()
     })
 
     for (let i = 0; i < delBtnFake.length; i++) {
         delBtnFake[i].addEventListener('click', () => {
             delBtnReal[i].click()
+        })
+    }
+
+    for (let i = 0; i < btnFCmtDel.length; i++) {
+        btnFCmtDel[i].addEventListener('click', () => {
+            btnRCmtDel[i].click()
         })
     }
 
@@ -133,15 +149,77 @@ document.addEventListener('DOMContentLoaded', () => {
         })
     }
 
+    for (let i = 0; i < formsCommentMod.length; i++) {
+        formsCommentMod[i].addEventListener("submit", (event) => {
+            event.preventDefault()
+
+            const content = document.getElementsByName("contentCmnt")[i].value
+            let articleid = document.getElementById("idArt").value
+
+            const formData = {
+                content: content,
+            };
+
+            fetch(`/comment/${keysModCmt[i].value}`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            }).then(response => response.json())
+            .then(data => {
+                if (data.success) location.assign(`/article/${articleid}`)
+            })
+
+            console.log(content)
+        })
+    }
+
+    console.log(formsCommentMod)
+    for (let i = 0; i < formsCommentMod; i++) {
+        formsCommentMod[i].addEventListener('submit', (event) => {
+            event.preventDefault();
+
+            console.log(keysModCmt[i].value)
+            fetch(`/comment/${keysModCmt[i].value}`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            }).then(response => response.json())
+            .then(data => {
+                if (data.success) location.assign(`/profile`)
+            })
+        })
+    }
+
+    for (let i = 0; i < formsCommentDel.length; i++) {
+        formsCommentDel[i].addEventListener('submit', (event) => {
+            event.preventDefault();
+            let articleid = document.getElementById("idArt").value
+
+            fetch(`/comment/${keysDelCmt[i].value}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).then(response => response.json())
+            .then(data => {
+                if (data.success) location.assign(`/article/${articleid}`)
+            })
+        })
+    }
+
     for (let i = 0; i < formsMod.length; i++) {
         formsMod[i].addEventListener('submit', function (event) {
             event.preventDefault(); // Prevent form submission
             // Retrieve form field values
-            const published = document.getElementById(`published${i}`).value
-            const title = document.getElementById(`title${i}`).value
-            const contentMod = document.getElementById(`contentMod${i}`).value
-            const categoryBoxes = document.getElementsByName(`category${i}`)
-            const allow = document.getElementById(`allow${i}`)
+            const published = document.getElementById(`published`).value
+            const title = document.getElementById(`title`).value
+            const contentMod = document.getElementById(`contentMod`).value
+            const categoryBoxes = document.getElementsByName(`category`)
+            const allow = document.getElementById(`allow`)
             let imgURL = ""
             if (allow) {
                 imgURL = (allow.checked) ?  "" : allow.value
@@ -177,8 +255,6 @@ document.addEventListener('DOMContentLoaded', () => {
     for (let i = 0; i < formsDel.length; i++) {
         formsDel[i].addEventListener('submit', function (event) {
             event.preventDefault(); // Prevent form submission
-            // Retrieve form field values
-        
             //Send the form data to the server
             fetch(`/article/${keysDel[i].value}`, {
                 method: 'DELETE',
@@ -219,29 +295,4 @@ document.addEventListener('DOMContentLoaded', () => {
             })
         })
     }
-    // document.querySelectorAll(".formComment").addEventListener('submit', function (event) {
-    //     event.preventDefault(); // Prevent form submission
-    //     // Retrieve form field values
-    //     const contentValue = document.getElementById('contentComment').value;
-    //     const keyValue = document.getElementById('key').value;
-
-    //     const formData = {
-    //         content: contentValue,
-    //         idArticle: keyValue
-    //     };
-
-    //     console.log(formData)
-
-    //     // Send the form data to the server
-    //     fetch('/comment', {
-    //         method: 'POST',
-    //         headers: {
-    //         'Content-Type': 'application/json'
-    //         },
-    //         body: JSON.stringify(formData),
-    //     }).then(response => response.json())
-    //     .then(data => {
-    //         console.log(data)
-    //     })
-    // })
 })

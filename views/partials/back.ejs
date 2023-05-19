@@ -1,0 +1,12 @@
+<div class="back">
+    <div class="SignDiv">
+        <i id="backArrow" class='bx bx-left-arrow-alt' ></i>
+    </div>
+    <div class="SuppInfo">
+        <div>
+            <p class="suppUser"> <% if(article) { %> <%= article.author.nom %> <% } else { %> <%= user.nom %> <% } %> 
+                <% if (!article) { %> &#8729; <span><%= articles.length %> articles</span> <% } %>
+            </p>
+        </div>
+    </div>
+</div>

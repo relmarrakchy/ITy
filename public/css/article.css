@@ -33,10 +33,6 @@ body {
     border-radius: 100px;
 }
 
-.postClick {
-    cursor: pointer;
-}
-
 .link button, .crePost button {
     border: none;
     padding: 10px 15px;
@@ -185,47 +181,6 @@ body {
 .suppUser {
     font-weight: bold;
     font-size: 18px;
-}
-
-.userDiv {
-    width: 100%;
-    height: fit-content;
-    border-bottom: 1px solid rgb(191, 172, 226);
-}
-
-.bg {
-    width: 100%;
-    height: 170px;
-    background-color: rgb(204, 212, 228);
-}
-
-.picImg {
-    width: 150px;
-    height: 150px;
-    border: 5px solid white;
-    border-radius: 100%;
-    margin: 0 auto;
-    margin-top: -10.5%;
-}
-
-.picImg img {
-    width: 100%;
-    height: 100%;
-    border-radius: inherit;
-}
-
-.infos {
-    text-align: center;
-    margin: 5px auto;
-    width: 200px;
-    height: fit-content;
-    font-size: 20px;
-    font-weight: bold;
-}
-
-.emaill {
-    font-size: 15.5px;
-    font-weight: lighter;
 }
 
 .post {
@@ -649,6 +604,64 @@ body {
 .share:focus {
     background-color: rgb(83, 79, 135);
     box-shadow: none;
+}
+
+.cmt {
+    width: 100%;
+}
+
+.cmt .cmntTypeDiv {
+    margin: 0 auto;
+    width: 76%;
+    height: fit-content;
+}
+
+.pp {
+    width: 100%;
+    border-bottom: 1px solid rgb(191, 172, 226);
+}
+
+.cmt .profil {
+    margin-top: 0.5%;
+}
+
+.cmt .typeCmnt {
+    margin-left: 10px;
+}
+
+.cmt .userInfoo {
+    margin-top: 3px;
+}
+
+.cmt .content {
+    margin-bottom: 3px;
+}
+
+.userInfoo {
+    font-size: 15px;
+    font-weight: bold;
+    margin-bottom: 6px;
+}
+
+.content {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 80%;
+}
+
+.op {
+    width: 10%;
+    display: flex;
+}
+
+.op i {
+    font-size: 25px;
+}
+
+.op .suppOp, .op .modifOp {
+    border-radius: 0;
+    margin-top: 12px;
+    margin-right: 3px;
 }
 
 .statInfo {

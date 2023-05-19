@@ -16,6 +16,8 @@ let login_post = async (req, res) => {
     let {email, password} = req.body
 
     try {
+        await prisma.$connect()
+
         let logUser = await prisma.user.findUnique({
             where: {
                 email: email
@@ -37,6 +39,8 @@ let login_post = async (req, res) => {
         }
     } catch (err) {
         res.json(err)
+    } finally {
+        await prisma.$disconnect()
     }
 }
 
@@ -49,6 +53,8 @@ let signup_post = async (req, res) => {
     let hachedPassword = await bcrypt.hashSync(password, salt)
 
     try {
+        await prisma.$connect()
+
         let newUser = await prisma.user.create({
             data: {
                 nom: name,
@@ -63,9 +69,16 @@ let signup_post = async (req, res) => {
         res.status(201).json({user: newUser.id})
     } catch (err) {
         res.json(err)
+    } finally {
+        await prisma.$disconnect()
     }
 }
 
+let logout = (req, res) => {
+    res.cookie('jwt', '', {maxAge: 1})
+    res.redirect("/")
+}
+
 module.exports = {
-    login_get, signup_get, signup_post, login_post
+    login_get, signup_get, signup_post, login_post, logout
 }

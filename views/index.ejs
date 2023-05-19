@@ -35,119 +35,80 @@
             <input id="searchBar" type="text" name="searchBar" placeholder="Type a category ...">
         </form>
 
-        <div class="post">
-            <div class="avatarDiv">
-                <a href="">
-                    <div class="avatar">
-                        <img src="/imgs/profile.png" alt="">
-                    </div>
-                </a>
-            </div>
-
-            <% if (user) { %>
-                <%- include("./partials/addArticleForm.ejs") %>
-            <% } %>
-    
-            <div class="contentPost">
-                <div class="postInfo">
-                    <div class="postClick" value="id_post">
-                        <p class="username"> Reda <span>- Il y a 2h</span> </p>
-    
-                        <p class="postDescription">
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quidem nam quam itaque, repudiandae nihil optio, ipsa odio, repellendus cum dicta et minima quas debitis eos molestias placeat eligendi esse nobis?
-                        </p>
-
-                        <div class="postPic">
+        <% for(let i = 0; i < articles.length; i++) { %> 
+            <div class="post">
+                <div class="avatarDiv">
+                    <a href="">
+                        <div class="avatar">
                             <img src="/imgs/profile.png" alt="">
                         </div>
-                    </div>
+                    </a>
+                </div>
 
-                    <div class="display">
-                        <div class="cmntTypeDiv">
-                            <div class="profil">
-                                <div class="profileAvatar">
-                                    <img src="/imgs/profile.png" alt="">
+                <div class="contentPost">
+                    <div class="postInfo">
+                        <div class="postClick" value="<%= articles[i].id %>">
+                            <p class="username"> <%= articles[i].author.nom %> <span>- Il y a 2h</span></p>
+
+                            <div class="categoriesList">
+                                <% for (let k = 0; k < categories.length; k++) { %>
+                                    <% for (let j = 0; j < articles[i].categories.length; j++) { %> 
+                                        <% if (articles[i].categories[j].categorieID == categories[k].id) { %>
+                                            <div class="category"> <%= categories[k].nom %> </div>
+                                        <% } %>
+                                    <% } %>
+                                <% } %>
+                            </div>
+        
+                            <p class="postDescription">
+                                <h5><%= articles[i].titre %></h5>
+                                <%= articles[i].contenu %>
+                            </p>
+
+                            <% if (articles[i].image) { %> 
+                                <div class="postPic">
+                                    <img src="<%= articles[i].image %>" alt="">
+                                </div>
+                            <% } %>
+                        </div>
+
+                        <% if (articles[i].published == 1) { %>
+                            <div class="display">
+                                <div class="cmntTypeDiv">
+                                    <div class="profil">
+                                        <div class="profileAvatar">
+                                            <img src="/imgs/profile.png" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="typeCmnt">
+                                        <form class="formComment" action="">
+                                            <textarea class="cmntTextarea contents" id="contentComment" name="" placeholder="Laissez un commentaire ..."></textarea>
+                                            <input type="hidden" class="keys" id="key" value="<%= articles[i].id %>"> <br>
+                                            <input type="submit" class="submit" value="reply" disabled>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="typeCmnt">
-                                <form action="">
-                                    <textarea class="cmntTextarea" name="" placeholder="Laissez un commentaire ..."></textarea> <br>
-                                    <button class="submit" disabled>Répondre</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-    
-                <div class="reactPost" >
-                    <div class="prince">
-                        <div class="reactCardCmnt">
-                            <div class="cmntDiv reactIcon">
-                                <a style="color: black; text-decoration: none; font-weight: 800"><i id="cmntIcon" class='bx bx-message-rounded'></i></a>
-                            </div>
-                            <div class="desc">
-                                <p>69</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="post">
-            <div class="avatarDiv">
-                <a href="">
-                    <div class="avatar">
-                        <img src="/imgs/profile.png" alt="">
-                    </div>
-                </a>
-            </div>
-    
-            <div class="contentPost">
-                <div class="postInfo">
-                    <div class="postClick" value="id_post">
-                        <p class="username"> Reda <span>- Il y a 2h</span> </p>
-    
-                        <p class="postDescription">
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quidem nam quam itaque, repudiandae nihil optio, ipsa odio, repellendus cum dicta et minima quas debitis eos molestias placeat eligendi esse nobis?
-                        </p>
-
-                        <div class="postPic">
-                            <img src="/imgs/logoWidth.png" alt="">
-                        </div>
+                        <% } %>
                     </div>
 
-                    <div class="display">
-                        <div class="cmntTypeDiv">
-                            <div class="profil">
-                                <div class="profileAvatar">
-                                    <img src="/imgs/profile.png" alt="">
+                    <% if (articles[i].published == 1) { %>
+                        <div class="reactPost" >
+                            <div class="prince">
+                                <div class="reactCardCmnt">
+                                    <div class="cmntDiv reactIcon">
+                                        <a style="color: black; text-decoration: none; font-weight: 800"><i id="cmntIcon" class='bx bx-message-rounded'></i></a>
+                                    </div>
+                                    <div class="desc">
+                                        <%= articles[i].commentaires.length %>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="typeCmnt">
-                                <form action="">
-                                    <textarea class="cmntTextarea" name="" placeholder="Laissez un commentaire ..."></textarea> <br>
-                                    <button class="submit" disabled>Répondre</button>
-                                </form>
-                            </div>
                         </div>
-                    </div>
-                </div>
-    
-                <div class="reactPost" >
-                    <div class="prince">
-                        <div class="reactCardCmnt">
-                            <div class="cmntDiv reactIcon">
-                                <a style="color: black; text-decoration: none; font-weight: 800"><i id="cmntIcon" class='bx bx-message-rounded'></i></a>
-                            </div>
-                            <div class="desc">
-                                <p>69</p>
-                            </div>
-                        </div>
-                    </div>
+                    <% } %>
                 </div>
             </div>
-        </div>
+        <% }%>
     </div>
 
     <div class="auth">
@@ -156,12 +117,14 @@
                 <p class="h">Nouveauté sur <span>IT</span>y ?</p>
                 <p class="des">Inscrivez-vous pour profiter de votre propre fil personnalisé !</p>
                 <div>
-                    <button class="signup"> Sign up </button>
+                    <button class="signup" id="sign"> Sign up </button>
                     <div class="logLink">
                         <a href="/login"> Already have an account ? </a>
                     </div>
                 </div>
             </div>
+        <% } else { %>
+            <%- include("./partials/info.ejs") %>
         <% } %>
     </div>
 </body>

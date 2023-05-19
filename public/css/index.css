@@ -19,6 +19,10 @@ body {
     width: 90%;
 }
 
+.postClick {
+    cursor: pointer;
+}
+
 .navBar {
     width: 80%;
     height: fit-content;
@@ -52,6 +56,28 @@ body {
 
 .active {
     font-weight: bold;
+}
+
+.categoriesList {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 5px;
+}
+
+.category {
+    border: 1px solid rgb(191, 172, 226);
+    color: rgb(101, 93, 187);
+    padding: 2px 7px;
+    margin-right: 7px;
+    border-radius: 100px;
+    font-weight: bold;
+    transition: outline 200ms;
+    cursor: pointer;
+}
+
+.category:hover {
+    outline: 2px solid rgb(221, 207, 249);
 }
 
 .crePost, .logout {
@@ -111,6 +137,97 @@ body {
     display: none;
 }
 
+.back {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    height: 7%;
+    border-bottom: 1px solid rgb(191, 172, 226);
+    display: flex;
+    background-color: rgba(255, 255, 255, 0.763);
+    z-index: 1;
+}
+
+.SignDiv {
+    width: 7.5%;
+    height: 100%;
+    text-align: center;
+}
+
+.SignDiv i {
+    font-size: 40px;
+    margin-top: 2.5px;
+    cursor: pointer;
+    color: rgb(127, 118, 218);
+    border-radius: 100%;
+    transition: background-color 200ms;
+}
+
+.SignDiv i:hover {
+    background-color: rgb(236, 242, 255);
+}
+
+.SuppInfo {
+    margin-left: 10px;
+    margin-top: 2.5px;
+}
+
+.SuppInfo div {
+    position: relative;
+    top: 5px;
+}
+
+.SuppInfo div span {
+    font-size: 14px;
+    font-weight: lighter;
+}
+
+.suppUser {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.userDiv {
+    width: 100%;
+    height: fit-content;
+    border-bottom: 1px solid rgb(191, 172, 226);
+}
+
+.bg {
+    width: 100%;
+    height: 170px;
+    background-color: rgb(204, 212, 228);
+}
+
+.picImg {
+    width: 150px;
+    height: 150px;
+    border: 5px solid white;
+    border-radius: 100%;
+    margin: 0 auto;
+    margin-top: -10.5%;
+}
+
+.picImg img {
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+}
+
+.infos {
+    text-align: center;
+    margin: 5px auto;
+    width: 200px;
+    height: fit-content;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.emaill {
+    font-size: 15.5px;
+    font-weight: lighter;
+}
+
 .post {
     width: 100%;
     height: fit-content;
@@ -164,6 +281,10 @@ body {
     color: gray;
 }
 
+.username i {
+    color: rgb(62, 84, 172);
+}
+
 .postDescription {
     margin: 0 5px;
     color: rgb(43, 43, 43);
@@ -192,6 +313,7 @@ body {
 
 .display {
     display: none;
+    margin: 12px 0;
 }
 
 .cmntTypeDiv {
@@ -247,11 +369,11 @@ body {
     outline: 2px solid rgb(101, 93, 187);
 }
 
-.typeCmnt button  {
+.typeCmnt .submit  {
     position: relative;
     margin-top: 0.3%;
-    left: 78%;
-    padding: 4px 8px;
+    left: 82%;
+    padding: 4px 10px;
     background-color: rgb(127, 118, 218);
     border: none;
     font-size: 15px;
@@ -261,7 +383,51 @@ body {
     transition: background-color 100ms;
 }
 
-.typeCmnt button:hover {
+.postOptions {
+    margin: 10% auto;
+    width: 50%;
+    height: fit-content;
+}
+
+.modifOp, .suppOp {
+    margin: 7px auto;
+    width: 80%;
+    height: 35px;
+    border-radius: 100%;
+    text-align: center;
+    cursor: pointer;
+}
+
+.modifOp button {
+    margin-top: 5px;
+    background-color: transparent;
+    border: none;
+    color: rgb(7, 141, 219)
+}
+
+.modifOp button:hover {
+    color: rgb(14, 130, 197)
+}
+
+.suppOp button {
+    margin-top: 5px;
+    background-color: transparent;
+    border: none;
+    color: rgb(219, 7, 7)
+}
+
+.suppOp button:hover {
+    color: rgb(184, 14, 14)
+}
+
+.postOptions i {
+    position: relative;
+    top: 25%;
+    font-size: 27px;
+    font-weight: lighter;
+}
+
+.typeCmnt .submit:hover {
     background-color: rgb(94, 87, 172);
 }
 
@@ -304,7 +470,6 @@ body {
     font-weight: lighter;
     cursor: pointer;
 }
-
 
 .search {
     position: sticky;
@@ -484,4 +649,75 @@ body {
 .share:focus {
     background-color: rgb(83, 79, 135);
     box-shadow: none;
+}
+
+.statInfo {
+    margin: 8% auto;
+    width: 80%;
+    height: fit-content;
+    border: 1px solid rgb(101, 93, 187);
+    border-radius: 10px;
+    text-align: center;
+}
+
+.statInfo .actualUser {
+    display: flex;
+    margin: 5px auto;
+    width: 85%;
+    height: 60px;
+    border: 1px solid rgb(191, 172, 226);
+    border-radius: 100px;
+}
+
+.userPic {
+    width: 24%;
+    height: 100%;
+    border-radius: 100%;
+}
+
+.userPic img{
+    width: 100%;
+    border-radius: 100%;
+}
+
+.userInfo {
+    width: 76%;
+    height: 100%;
+}
+
+.userInfo div {
+    font-weight: bold;
+    font-size: 17px;
+    margin-right: 12%;
+    margin-top: 9%;
+}
+
+.statInfo table {
+    width: 100%;
+}
+
+.statInfo table td {
+    padding: 5px 0;
+    width: 50%;
+}
+
+#logout {
+    margin: 10px auto;
+    width: 70%;
+    padding: 10px 5px;
+    border: 1px solid rgb(101, 93, 187);
+    border-radius: 20px;
+    cursor: pointer;
+    color: white;
+    font-weight: bold;
+    background-color: rgb(101, 93, 187);
+    transition: background 200ms;
+    transition: color 200ms;
+    transition: outline 50ms;
+}
+
+#logout:hover {
+    background-color: transparent;
+    color: black;
+    outline: 2px solid rgb(129, 122, 209);
 }
