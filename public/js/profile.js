@@ -24,8 +24,6 @@ document.addEventListener('DOMContentLoaded', () => {
     let keys = document.querySelectorAll(".keys")
     let keysDel = document.querySelectorAll(".delKeys")
 
-    console.log(posts[0].attributes[1].value)
-
     if (document.getElementById("logout")) {
         document.getElementById("logout").addEventListener("click", () => {
             window.location.pathname = "/logout"
@@ -153,6 +151,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (box.checked) categories.push(box.value)
             })
 
+            console.log(published)
+
             const formData = {
                 published: published,
                 title: title,
@@ -219,29 +219,4 @@ document.addEventListener('DOMContentLoaded', () => {
             })
         })
     }
-    // document.querySelectorAll(".formComment").addEventListener('submit', function (event) {
-    //     event.preventDefault(); // Prevent form submission
-    //     // Retrieve form field values
-    //     const contentValue = document.getElementById('contentComment').value;
-    //     const keyValue = document.getElementById('key').value;
-
-    //     const formData = {
-    //         content: contentValue,
-    //         idArticle: keyValue
-    //     };
-
-    //     console.log(formData)
-
-    //     // Send the form data to the server
-    //     fetch('/comment', {
-    //         method: 'POST',
-    //         headers: {
-    //         'Content-Type': 'application/json'
-    //         },
-    //         body: JSON.stringify(formData),
-    //     }).then(response => response.json())
-    //     .then(data => {
-    //         console.log(data)
-    //     })
-    // })
 })

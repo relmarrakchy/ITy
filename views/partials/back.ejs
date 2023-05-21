@@ -4,7 +4,7 @@
     </div>
     <div class="SuppInfo">
         <div>
-            <p class="suppUser"> <% if(article) { %> <%= article.author.nom %> <% } else { %> <%= user.nom %> <% } %> 
+            <p class="suppUser"> <% if(article) { %> <%= article.author.nom %> <% } else if(friend) { %> <%= friend.nom  %> <% } else { %> <%= user.nom  %> <% } %>
                 <% if (!article) { %> &#8729; <span><%= articles.length %> articles</span> <% } %>
             </p>
         </div>

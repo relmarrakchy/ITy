@@ -4,6 +4,8 @@ let jwt = require('jsonwebtoken')
 
 let index_get = async (req, res) => {
     let categories = articles = ""
+    let timing = []
+
     try {
         await prisma.$connect();
 
@@ -43,8 +45,23 @@ let index_get = async (req, res) => {
                     }
                 })
             }
-            console.log(articles)
-            res.render("index", {title: "Index", active: "index", categories: categories, articles: articles, article: ""})
+
+            articles.forEach(art => {
+                let update = art.updatedAt
+                let now = new Date()
+    
+                let timeDiff = now - update
+    
+                var data = {
+                    days: Math.floor(timeDiff / (1000 * 60 * 60 * 24)),
+                    hours: Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+                    mins: Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60)),
+                    secs: Math.floor((timeDiff % (1000 * 60)) / 1000)
+                }
+    
+                timing.push(data)
+            });
+            res.render("index", {title: "Index", active: "index", categories: categories, articles: articles, article: "", timing: timing})
         })
     } catch (err) {
         console.log(err)

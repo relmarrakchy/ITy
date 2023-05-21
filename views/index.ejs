@@ -30,15 +30,17 @@
     </div>
 
     <div class="main">
+        <%- include("./partials/addArticleForm.ejs") %>
         <form class="search" action="">
             <i class='searchIcon bx bx-search-alt'></i>
             <input id="searchBar" type="text" name="searchBar" placeholder="Type a category ...">
         </form>
 
+        <div id="searchRes">
         <% for(let i = 0; i < articles.length; i++) { %> 
             <div class="post">
                 <div class="avatarDiv">
-                    <a href="">
+                    <a href="/profile/<%= articles[i].author.id %>">
                         <div class="avatar">
                             <img src="/imgs/profile.png" alt="">
                         </div>
@@ -48,7 +50,21 @@
                 <div class="contentPost">
                     <div class="postInfo">
                         <div class="postClick" value="<%= articles[i].id %>">
-                            <p class="username"> <%= articles[i].author.nom %> <span>- Il y a 2h</span></p>
+                            <p class="username"> <%= articles[i].author.nom %> 
+                                <span>
+                                    <% if (timing[i].days != 0) { %>
+                                        - <%= timing[i].days %> days
+                                    <% } else if (timing[i].hours != 0) { %> 
+                                        - <%= timing[i].hours %> hours
+                                    <% } else if (timing[i].mins != 0) { %>
+                                        - <%= timing[i].mins %> mins
+                                    <%} else if (timing[i].secs != 0) { %>
+                                        - <%= timing[i].secs %> seconds
+                                    <%} else { %>
+                                        - now
+                                    <% } %>
+                                </span>
+                            </p>
 
                             <div class="categoriesList">
                                 <% for (let k = 0; k < categories.length; k++) { %>
@@ -109,6 +125,7 @@
                 </div>
             </div>
         <% }%>
+        </div>
     </div>
 
     <div class="auth">

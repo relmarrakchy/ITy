@@ -57,7 +57,7 @@ let addArticle = (req, res, next) => {
                             titre: title,
                             contenu: content,
                             image: imgURL,
-                            published: (published == 1) ? true : false,
+                            published: Boolean(published),
                             userID: encodedToken.id
                         }
                     })
@@ -141,7 +141,6 @@ let modifyArticle = (req, res) => {
     let articleID = req.params.id
     let token = req.cookies.jwt
 
-    console.log(categories)
     jwt.verify(token, 'ity2023', async (err, encodedToken) => {
         if (encodedToken) {
             let upArt = await prisma.article.update({
@@ -149,13 +148,15 @@ let modifyArticle = (req, res) => {
                     id: Number(articleID)
                 },
                 data: {
-                    published: (published) ? true : false,
+                    published: (published == "false") ? false : true,
                     titre: title,
                     contenu: content,
                     image: img,
                     userID: encodedToken.id
                 }
             })
+
+            console.log(upArt.published)
 
             if (upArt) {
                 await prisma.categorieArticle.deleteMany({
@@ -179,4 +180,72 @@ let modifyArticle = (req, res) => {
     })
 }
 
-module.exports = { getArticle, addArticle, deleteArticle, modifyArticle }
+let searchArticles = (req, res) => {
+    let {category} = req.body
+    let token = req.cookies.jwt
+
+    jwt.verify(token, 'ity2023', async (err, encodedToken) => {
+        if (encodedToken) {
+            try {
+                let categories = await prisma.categorie.findMany({
+                    where: {
+                        nom: {
+                            contains: category
+                        }
+                    },
+                    include: {
+                        articles: true
+                    }
+                })
+
+                var data = []
+                var timing = []
+                await Promise.all(categories.map(async (cat) => {
+                    await Promise.all(cat.articles.map(async (art) => {
+                        const article = await prisma.article.findUnique({
+                            where: {
+                                id: Number(art.articleID),
+                            },
+                            include: {
+                                categories: true,
+                                author: true,
+                                commentaires: true
+                            }
+                    });
+                  
+                    if (article.userID !== encodedToken.id && article.published == 1) {
+                        let update = article.updatedAt
+                        let now = new Date()
+            
+                        let timeDiff = now - update
+            
+                        var time = {
+                            days: Math.floor(timeDiff / (1000 * 60 * 60 * 24)),
+                            hours: Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+                            mins: Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60)),
+                            secs: Math.floor((timeDiff % (1000 * 60)) / 1000)
+                        }
+            
+                        timing.push(time)
+                        data.push(article);
+                    }
+                    }))
+                }))
+
+                let response = {
+                    categories: categories,
+                    data: data,
+                    timing: timing
+                }
+                
+                res.json(response)
+            } catch (err) {
+
+            } finally {
+                
+            }
+        }
+    })
+}
+
+module.exports = { getArticle, addArticle, deleteArticle, modifyArticle, searchArticles }

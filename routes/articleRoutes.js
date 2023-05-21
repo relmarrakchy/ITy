@@ -8,5 +8,6 @@ router.get("/article/:id", requireAuth, articleController.getArticle)
 router.post("/article", requireAuth, upload.single('image'), articleController.addArticle)
 router.patch("/article/:id", requireAuth, articleController.modifyArticle)
 router.delete("/article/:id", requireAuth, articleController.deleteArticle)
+router.post("/search", requireAuth, articleController.searchArticles)
 
 module.exports = router

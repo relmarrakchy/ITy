@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let typeDiv = document.querySelectorAll(".display")
     let cmntTextareas = document.querySelectorAll(".cmntTextarea")
     let subBtns = document.querySelectorAll(".submit")
+    let articles = document.querySelectorAll(".post")
     let posts = document.querySelectorAll(".postClick")
     let backArrow = document.getElementById("backArrow")
     const textarea = document.getElementById('content')
@@ -23,6 +24,124 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let keys = document.querySelectorAll(".keys")
     let keysDel = document.querySelectorAll(".delKeys")
+
+    let bar = document.getElementById("searchBar")
+
+    bar.addEventListener("keyup", () => {
+        let word = bar.value
+
+        if (word) {
+            const formData = {
+                category: word,
+            };
+            //Send the form data to the server
+            fetch('/search', {
+                method: 'POST',
+                headers: {
+                'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData),
+            }).then(response => response.json())
+            .then(data => {
+                console.log(data)
+                document.getElementById("searchRes").innerHTML = ``
+
+                let i = 0
+                data.data.forEach(art => {
+                    let timeData = data.timing[i]
+                    let time = "now"
+                    if (timeData.days != 0) {
+                        time = `${timeData.days} days`
+                    } else if (timeData.hours != 0) {
+                        time = `${timeData.hours} hours`
+                    } else if (timeData.mins != 0) {
+                        time = `${timeData.mins} mins`
+                    } else if (timeData.secs != 0) {
+                        time = `${timeData.secs} seconds`
+                    }
+
+                    let cat = ""
+
+                    for (let j = 0; j < data.categories.length; j++) {
+                        for (let k = 0; k < art.categories.length; k++) {
+                            if (art.categories[k].categorieID == data.categories[j].id) {
+                                cat = data.categories[j].nom
+                            }
+                        }
+                    }
+
+                    let sumCmnts = art.commentaires.length
+
+                    let post = `
+                    <div class="post">
+                        <div class="avatarDiv">
+                            <a href="/profile/${art.author.id}">
+                                <div class="avatar">
+                                    <img src="/imgs/profile.png" alt="">
+                                </div>
+                            </a>
+                        </div>
+        
+                        <div class="contentPost">
+                            <div class="postInfo">
+                                <div class="postClick" value="${art.id}">
+                                    <p class="username"> ${art.author.nom}
+                                        <span>
+                                            - ${time}
+                                        </span>
+                                    </p>
+        
+                                    <div class="categoriesList">
+                                        <div class="category"> ${cat} </div>
+                                    </div>
+                
+                                    <p class="postDescription">
+                                        <h5> ${art.titre} </h5>
+                                        ${art.contenu}
+                                    </p>
+
+                                    ${art.image != "" ? `<div class="postPic"><img src="${art.image}" alt=""></div>` : ''}
+                                </div>
+        
+                                    <div class="display">
+                                        <div class="cmntTypeDiv">
+                                            <div class="profil">
+                                                <div class="profileAvatar">
+                                                    <img src="/imgs/profile.png" alt="">
+                                                </div>
+                                            </div>
+                                            <div class="typeCmnt">
+                                                <form class="formComment" action="">
+                                                    <textarea class="cmntTextarea contents" id="contentComment" name="" placeholder="Laissez un commentaire ..."></textarea>
+                                                    <input type="hidden" class="keys" id="key" value="${art.id}"> <br>
+                                                    <input type="submit" class="submit" value="reply" disabled>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div>
+        
+                                <div class="reactPost" >
+                                    <div class="prince">
+                                        <div class="reactCardCmnt">
+                                            <div class="cmntDiv reactIcon">
+                                                <a style="color: black; text-decoration: none; font-weight: 800"><i id="cmntIcon" class='bx bx-message-rounded'></i></a>
+                                            </div>
+                                            <div class="desc">
+                                                ${sumCmnts}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                    `
+                    document.getElementById("searchRes").innerHTML += post
+                    i++
+                })
+            })
+        }
+    })
 
     if (document.getElementById("logout")) {
         document.getElementById("logout").addEventListener("click", () => {

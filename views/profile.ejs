@@ -40,10 +40,20 @@
             </div>
 
             <div class="infos">
-                <p style="margin-bottom: 0;"><% if(user) { %> <%= user.nom %> <% } %></p>
-                <p class="emaill" style="margin-bottom: 0;"><% if(user) { %> <%= user.email %> <% } %></p>
+                <p style="margin-bottom: 0;">
+                    <% if(friend) { %> <%= friend.nom  %> <% } else { %> <%= user.nom  %> <% } %>
+                </p>
+                <p class="emaill" style="margin-bottom: 0;">
+                    <% if(friend) { %> <%= friend.email  %> <% } else { %> <%= user.email  %> <% } %>
+                </p>
             </div>
         </div>
+
+        <% if (articles == "") { %>
+            <div class="empty">
+                There's no articles &#128532;
+            </div>
+        <% } %>
 
         <% for(let i = 0; i < articles.length; i++) { %> 
             <div class="post" value="<%= articles.id %>">
@@ -54,137 +64,154 @@
                         </div>
                     </a>
 
+                    
+
                     <div class="postOptions">
-                        <div class="modifOp">
-                            <button type="button" data-toggle="modal" data-target="#modModal<%= i %>">
-                                <i class='bx bxs-edit editIcon'></i>
-                            </button>
-                        </div>
-                        <div class="modal fade" id="modModal<%= i %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-lg" role="document">
-                              <div class="modal-content">
-                                <div class="modal-header">
-                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                  </button>
-                                </div>
-                                <div class="modal-body">
-                                    <form id="form" class="addArticle modForm" enctype="multipart/form-data">
-                                        <div class="avatarDiv">
-                                            <a href="">
-                                                <div class="avatar">
-                                                    <img src="/imgs/profile.png" alt="">
-                                                </div>
-                                            </a>
-                                        </div>
-
-                                        <div class="fields">
-                                            <div>
-                                                <div class="mb-3">
-                                                    <select id="published<%= i %>" name="published" class="form-select fSel" aria-label="Default select example" style="width: 100px">
-                                                        <option value="true" <% if(articles[i].published == 1) { %> selected <% } %> >Public</option>
-                                                        <option value="false" <% if(articles[i].published == 0) { %> selected <% } %> >Me only</option>
-                                                    </select>
-
+                        <% if (!friend) { %>
+                            <div class="modifOp">
+                                <button type="button" data-toggle="modal" data-target="#modModal<%= i %>">
+                                    <i class='bx bxs-edit editIcon'></i>
+                                </button>
+                            </div>
+                            <div class="modal fade" id="modModal<%= i %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-lg" role="document">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                      </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form id="form" class="addArticle modForm" enctype="multipart/form-data">
+                                            <div class="avatarDiv">
+                                                <a href="">
+                                                    <div class="avatar">
+                                                        <img src="/imgs/profile.png" alt="">
+                                                    </div>
+                                                </a>
+                                            </div>
+    
+                                            <div class="fields">
+                                                <div>
                                                     <div class="mb-3">
-                                                        Categories :
-                                                        <div style="display: flex; width: 100%; margin-bottom: 12px;">
-                                                            <div style="width: 50%">
-                                                                <% for(let j = 0; j < categories.length; j++) { %>
-                                                                    <% if (!(j % 2)) { %> 
-                                                                        <div class="form-check">
-                                                                            <input class="form-check-input categoryMod" name="category<%= i %>" type="checkbox" value="<%= categories[j].id %>" id="flexCheckDefault<%= j %>"
-                                                                                <% for (let k = 0; k < articles[i].categories.length; k++) { %>
-                                                                                    <% if (articles[i].categories[k].categorieID === categories[j].id) { %> checked <% } %>
-                                                                                <% } %>
-                                                                            >
-                                                                            <label class="form-check-label" for="flexCheckDefault<%= j %>"> <%= categories[j].nom %> </label>
-                                                                        </div>
+                                                        <select id="published<%= i %>" name="published" class="form-select fSel" aria-label="Default select example" style="width: 100px">
+                                                            <option value="true" <% if(articles[i].published == 1) { %> selected <% } %> >Public</option>
+                                                            <option value="false" <% if(articles[i].published == 0) { %> selected <% } %> >Me only</option>
+                                                        </select>
+    
+                                                        <div class="mb-3">
+                                                            Categories :
+                                                            <div style="display: flex; width: 100%; margin-bottom: 12px;">
+                                                                <div style="width: 50%">
+                                                                    <% for(let j = 0; j < categories.length; j++) { %>
+                                                                        <% if (!(j % 2)) { %> 
+                                                                            <div class="form-check">
+                                                                                <input class="form-check-input categoryMod" name="category<%= i %>" type="checkbox" value="<%= categories[j].id %>" id="flexCheckDefault<%= j %>"
+                                                                                    <% for (let k = 0; k < articles[i].categories.length; k++) { %>
+                                                                                        <% if (articles[i].categories[k].categorieID === categories[j].id) { %> checked <% } %>
+                                                                                    <% } %>
+                                                                                >
+                                                                                <label class="form-check-label" for="flexCheckDefault<%= j %>"> <%= categories[j].nom %> </label>
+                                                                            </div>
+                                                                        <% } %>
                                                                     <% } %>
-                                                                <% } %>
-                                                            </div>
-                                                            <div style="width: 50%">
-                                                                <% for(let j = 0; j < categories.length; j++) { %>
-                                                                    <% if (j % 2) { %> 
-                                                                        <div class="form-check">
-                                                                            <input class="form-check-input categoryMod" name="category<%= i %>" type="checkbox" value="<%= categories[j].id %>" id="flexCheckDefault<%= j %>"
-                                                                                <% for (let k = 0; k < articles[i].categories.length; k++) { %>
-                                                                                    <% if (articles[i].categories[k].categorieID === categories[j].id) { %> checked <% } %>
-                                                                                <% } %>
-                                                                            >
-                                                                            <label class="form-check-label" for="flexCheckDefault<%= j %>"> <%= categories[j].nom %> </label>
-                                                                        </div>
+                                                                </div>
+                                                                <div style="width: 50%">
+                                                                    <% for(let j = 0; j < categories.length; j++) { %>
+                                                                        <% if (j % 2) { %> 
+                                                                            <div class="form-check">
+                                                                                <input class="form-check-input categoryMod" name="category<%= i %>" type="checkbox" value="<%= categories[j].id %>" id="flexCheckDefault<%= j %>"
+                                                                                    <% for (let k = 0; k < articles[i].categories.length; k++) { %>
+                                                                                        <% if (articles[i].categories[k].categorieID === categories[j].id) { %> checked <% } %>
+                                                                                    <% } %>
+                                                                                >
+                                                                                <label class="form-check-label" for="flexCheckDefault<%= j %>"> <%= categories[j].nom %> </label>
+                                                                            </div>
+                                                                        <% } %>
                                                                     <% } %>
-                                                                <% } %>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-
-                                                <div class="mb-3">
-                                                    <input id="title<%= i %>" name="title" type="text" class="form-control inp" id="exampleFormControlInput1" placeholder="Title" value="<%= articles[i].titre %>">
-                                                </div>
-                    
-                                                <div class="mb-3">
-                                                    <textarea id="contentMod<%= i %>" name="content" class="form-control ta" id="ta" placeholder="What are you thinking about ?"><%= articles[i].contenu %></textarea>
-                                                </div>
-
-                                                <div class="form-check">
-                                                    <% if (articles[i].image) { %>
-                                                        <input id="allow<%= i %>" class="form-check-input" name="deleteImg" type="checkbox" value="<%= articles[i].image %>" id="flexCheckDefault">
-                                                        <label class="form-check-label" for="flexCheckDefault">
-                                                            Delete the image
-                                                        </label>
-                                                    <% } %>
-                                                    <input type="submit" class="modRealBtn" style="display: none;">
+    
+                                                    <div class="mb-3">
+                                                        <input id="title<%= i %>" name="title" type="text" class="form-control inp" id="exampleFormControlInput1" placeholder="Title" value="<%= articles[i].titre %>">
+                                                    </div>
+                        
+                                                    <div class="mb-3">
+                                                        <textarea id="contentMod<%= i %>" name="content" class="form-control ta" id="ta" placeholder="What are you thinking about ?"><%= articles[i].contenu %></textarea>
+                                                    </div>
+    
+                                                    <div class="form-check">
+                                                        <% if (articles[i].image) { %>
+                                                            <input id="allow<%= i %>" class="form-check-input" name="deleteImg" type="checkbox" value="<%= articles[i].image %>" id="flexCheckDefault">
+                                                            <label class="form-check-label" for="flexCheckDefault">
+                                                                Delete the image
+                                                            </label>
+                                                        <% } %>
+                                                        <input type="submit" class="modRealBtn" style="display: none;">
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </form>
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary modFakeBtn">Modify the article</button>
+                                    </div>
+                                  </div>
                                 </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary modFakeBtn">Modify the article</button>
-                                </div>
-                              </div>
                             </div>
-                        </div>
-
-
-                        <div class="suppOp">
-                            <button type="button" data-toggle="modal" data-target="#delModal<%= i %>">
-                                <i class='bx bxs-trash suppIcon'></i>
-                            </button>
-                        </div>
-                        <div class="modal fade" id="delModal<%= i %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                              <div class="modal-content">
-                                <div class="modal-header">
-                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                  </button>
-                                </div>
-                                <div class="modal-body">
-                                    Are you sure that you want delete the article that has the title <b><%= articles[i].titre %></b>
-                                    <form class="formDelete">
-                                        <input type="hidden" class="delKeys" value="<%= articles[i].id %>">
-                                        <button type="submit" class="delBtnReal" style="display: none;"></button>
-                                    </form>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary delBtnFake">Delete the article</button>
-                                </div>
-                              </div>
+    
+    
+                            <div class="suppOp">
+                                <button type="button" data-toggle="modal" data-target="#delModal<%= i %>">
+                                    <i class='bx bxs-trash suppIcon'></i>
+                                </button>
                             </div>
-                        </div>
+                            <div class="modal fade" id="delModal<%= i %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                      </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Are you sure that you want delete the article that has the title <b><%= articles[i].titre %></b>
+                                        <form class="formDelete">
+                                            <input type="hidden" class="delKeys" value="<%= articles[i].id %>">
+                                            <button type="submit" class="delBtnReal" style="display: none;"></button>
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-danger delBtnFake">Delete the article</button>
+                                    </div>
+                                  </div>
+                                </div>
+                            </div>
+                        <% } %>
                     </div>
                 </div>
         
                 <div class="contentPost">
                     <div class="postInfo">
                         <div class="postClick" value="<%= articles[i].id %>">
-                            <p class="username"> <%= user.nom %> <span>- Il y a 2h</span> 
+                            <p class="username"> <% if(friend) { %> <%= friend.nom  %> <% } else { %> <%= user.nom  %> <% } %>
+                                <span>
+                                    <% if (timing[i].days != 0) { %>
+                                        - <%= timing[i].days %> days
+                                    <% } else if (timing[i].hours != 0) { %> 
+                                        - <%= timing[i].hours %> hours
+                                    <% } else if (timing[i].mins != 0) { %>
+                                        - <%= timing[i].mins %> mins
+                                    <%} else if (timing[i].secs != 0) { %>
+                                        - <%= timing[i].secs %> seconds
+                                    <%} else { %>
+                                        - now
+                                    <% } %>
+                                </span>
                                 <% if (articles[i].published == 1) { %> 
                                     <i class='bx bx-world'></i> 
                                 <% } else { %>
@@ -209,7 +236,7 @@
 
                             <% if (articles[i].image) { %> 
                                 <div class="postPic">
-                                    <img src="<%= articles[i].image %>" alt="">
+                                    <img src="<%= articles[i].image.slice(1) %>" alt="">
                                 </div>
                             <% } %>
                         </div>
