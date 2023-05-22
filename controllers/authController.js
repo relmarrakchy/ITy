@@ -30,7 +30,11 @@ let login_post = async (req, res) => {
             if (auth) {
                 let token = createToken(logUser.id)
                 res.cookie('jwt', token, {httpOnly: true, maxAge: maxAge * 1000})
-                res.json({user: logUser.id})
+                if (logUser.role == "ADMIN") {
+                    res.json({admin: 1})
+                } else {
+                    res.json({user: logUser.id})
+                }
             } else {
                 res.json({code: "222"})
             }

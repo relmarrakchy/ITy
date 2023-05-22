@@ -69,7 +69,8 @@ let get_profile = async (req, res) => {
 
         articles = await prisma.article.findMany({
             where: {
-                userID: Number(friendID)
+                userID: Number(friendID),
+                published: true
             },
             orderBy: {
                 id: "desc"

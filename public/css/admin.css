@@ -1,0 +1,257 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-family: "system-ui";
+}
+
+.categorieSection {
+    width: 100%;
+    height: 50%;
+    display: flex;
+    color: rgba(101, 93, 187, 0.798);
+}
+
+.catGrapheDiv, .catConfDiv {
+    width: 50%;
+    height: 100%;
+}
+
+.catGraphe, .catConf {
+    margin: 2.5% auto;
+    width: 95%;
+    height: 90%;
+    border: 1px solid rgb(191, 172, 226);
+    outline: 2.5px solid rgb(208, 196, 231);
+    border-radius: 10px;
+}
+
+.catConf {
+    display: flex;
+}
+
+.catList, .catForm {
+    width: 50%;
+    border-radius: inherit;
+}
+
+.catList {
+    text-align: center;
+    border-right: 3px solid rgb(191, 172, 226);
+    overflow-y: scroll;
+}
+
+.catList thead th {
+    border-bottom: none;
+    color: rgb(101, 93, 187);
+}
+
+.catList::-webkit-scrollbar {
+    display: none;
+}
+
+.catForm {
+    text-align: center;
+}
+
+.catForm form {
+    margin: 28% auto;
+    width: 80%;
+}
+
+.catForm form input[type="text"] {
+    background-color: transparent;
+    border: 1px solid rgb(101, 93, 187);
+    transition: outline 50ms;
+}
+
+.catForm form input[type="text"]:focus {
+    outline: 3px solid rgb(191, 172, 226);
+    box-shadow: none;
+}
+
+.catForm form button {
+    background-color: rgb(101, 93, 187);
+    border: 1px solid rgb(101, 93, 187);
+    transition: background 60ms;
+}
+
+.catForm form button:hover {
+    background-color: rgb(76, 69, 153);
+    border: 1px solid rgb(76, 69, 153);
+}
+
+.catForm form button:focus {
+    box-shadow: none;
+}
+
+#errCat, #errAdd, #errMod {
+    margin-bottom: 2.5%;
+    width: 100%;
+    background-color: rgb(251, 163, 163);
+    border-radius: 10px;
+    color: red;
+    font-weight: 500;
+    display: none;
+}
+
+#errCat i, #errAdd i, #errMod {
+    transform: translate(0%, 5%);
+}
+
+.userSection {
+    width: 100;
+    height: 50%;
+    display: flex;
+}
+
+.authorListDiv {
+    width: 70%;
+    height: 100%;
+}
+
+.addAdminDiv {
+    width: 30%;
+    height: 100%;
+}
+
+.authorList {
+    margin: 2.5% auto;
+    width: 95%;
+    height: 90%;
+    border: 1px solid rgb(191, 172, 226);
+    outline: 2.5px solid rgb(208, 196, 231);
+    border-radius: 10px;
+}
+
+.addAdminn {
+    text-align: center;
+    margin: 5.5% auto;
+    width: 92%;
+    height: 90%;
+    border: 1px solid rgb(191, 172, 226);
+    outline: 2.5px solid rgb(208, 196, 231);
+    border-radius: 10px;
+}
+
+.authorList {
+    display: flex;
+}
+
+.userData {
+    text-align: center;
+    width: 55%;
+    border-right: 3px solid rgb(191, 172, 226);
+    border-radius: 10px;
+    overflow-y: scroll;
+}
+
+.addAdmin {
+    text-align: center;
+    width: 45%;
+}
+
+.addAdmin form {
+    margin: 11% auto;
+    width: 90%;
+}
+
+.addAdmin form input {
+    background-color: transparent;
+    border: 1px solid rgb(101, 93, 187);
+    transition: outline 50ms;
+}
+
+.addAdmin form input:focus {
+    background-color: transparent;
+    outline: 3px solid rgb(191, 172, 226);
+    box-shadow: none;
+}
+
+.addAdmin form button {
+    background-color: rgb(101, 93, 187);
+    border: 1px solid rgb(101, 93, 187);
+    transition: background 60ms;
+}
+
+.addAdmin form button:hover {
+    background-color: rgb(76, 69, 153);
+    border: 1px solid rgb(76, 69, 153);
+}
+
+.addAdmin form button:focus {
+    box-shadow: none;
+}
+
+.userData::-webkit-scrollbar {
+    display: none;
+}
+
+.userData thead th {
+    border-bottom: none;
+    color: rgb(101, 93, 187);
+}
+
+.AUTHOR {
+    background-color: rgb(101, 93, 187);
+    border-radius: 10px;
+    color: white;
+    font-weight: 500;
+    padding: 0 3px;
+}
+
+.ADMIN {
+    background-color: rgb(62, 84, 172);
+    border-radius: 10px;
+    color: white;
+    font-weight: 500;
+    padding: 0 3px;
+}
+
+.logoDiv {
+    text-align: center;
+    margin: 5% auto;
+    width: 90%;
+    height: 35%;
+}
+
+.logoDiv img {
+    height: 100%;
+}
+
+.addAdminn .btn {
+    background-color: rgb(101, 93, 187);
+    border: 1px solid rgb(101, 93, 187);
+    padding: 10px 10px;
+    font-weight: 500;
+    transition: background 20ms;
+    border-radius: 100px;
+}
+
+.addAdminn .btn:hover {
+    background-color: rgb(84, 75, 176);
+}
+
+#logout {
+    margin: 2% 0;
+    background-color: rgb(101, 93, 187);
+    border: 1px solid rgb(101, 93, 187);
+    border-radius: 100px;
+    color: white;
+    font-weight: 500;
+    padding: 10px 55px;
+    outline: none;
+    transition: background 50ms;
+    transition: color 50ms;
+    transition: outline 50ms;
+}
+
+#logout:hover {
+    background-color: transparent;
+    color: rgb(101, 93, 187);
+    outline: 3px solid rgb(191, 172, 226);
+}
+
+canvas {
+    width: 100%;
+    margin: 0 auto;
+}

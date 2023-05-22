@@ -46,6 +46,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (data.user) {
                     location.assign(`/`)
                 }
+                if (data.admin) {
+                    location.assign('/admin')
+                }
             })
         } else {
             err.style.display = "block"
