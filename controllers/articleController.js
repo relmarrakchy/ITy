@@ -27,7 +27,7 @@ let getArticle = async (req, res) => {
                 })
             }
             console.log(article)
-            res.render("article", {active: "profile", categories: categories, article: article})
+            res.render("article", {active: "index", categories: categories, article: article})
         })
     } catch (err) {
         console.log(err)
